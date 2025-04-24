@@ -71,13 +71,13 @@ def download(file):
             'Content-Disposition': f"attachment; filename*=UTF-8''{encoded_file_name}"
         }
     )
-    
+    # ファイル送信後に削除
+    @response.call_on_close
+    def remove_file():
+        if os.path.exists(file_path):
+            os.remove(file_path)
     return response    
-    # # ファイル送信後に削除
-    # @response.call_on_close
-    # def remove_file():
-    #     if os.path.exists(file_path):
-    #         os.remove(file_path)
+
 
 
 
