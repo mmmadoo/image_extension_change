@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 import os
 from PIL import Image
+from urllib.parse import quote
 
 app = Flask(__name__)
 
