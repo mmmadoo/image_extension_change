@@ -9,7 +9,7 @@ ext_dict = {'pdf': 'PDF', 'png': 'png', 'jpg': 'jpeg'}
 # 操作画面
 @app.route('/')
 def index():
-    files = [file for file in os.listdir('files')]
+    files = [file for file in os.listdir('files') if file.filename != ".gitkeep"]
     return render_template('index.html', csv_files=files)
 
 # ファイルのアップロードを行う
