@@ -73,5 +73,11 @@ def download(file):
     
     return response
 
+@app.route('/delete/<string:file>')
+def delete(file):
+    file_path = os.path.join('files', file)
+    os.remove(file_path)
+    return redirect(url_for('index'))
+
 if __name__ == '__main__':
     app.run(debug=True)
