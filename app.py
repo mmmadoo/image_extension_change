@@ -66,11 +66,11 @@ def download(file):
         }
     )
     
-    # ファイル送信後に削除
-    @response.call_on_close
-    def remove_file():
-        if os.path.exists(file_path):
-            os.remove(file_path)
+    # # ファイル送信後に削除
+    # @response.call_on_close
+    # def remove_file():
+    #     if os.path.exists(file_path):
+    #         os.remove(file_path)
     
     return response
 
