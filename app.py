@@ -3,6 +3,7 @@ import os
 from PIL import Image
 from urllib.parse import quote
 
+
 app = Flask(__name__)
 
 ext_dict = {'pdf': 'PDF', 'png': 'png', 'jpg': 'jpeg'}
@@ -87,3 +88,6 @@ def delete(file):
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+
+
