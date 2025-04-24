@@ -57,12 +57,15 @@ def download(file):
         with open(file_path, 'rb') as f:
             yield from f
     
+    # 日本語ファイル名をURLエンコード
+    encoded_file_name = quote(file)
+    
     # レスポンスを作成
     response = app.response_class(
         generate(),
         mimetype='application/octet-stream',
         headers={
-            'Content-Disposition': f'attachment; filename={file}'
+            'Content-Disposition': f"attachment; filename*=UTF-8''{encoded_file_name}"
         }
     )
     
@@ -71,8 +74,9 @@ def download(file):
     # def remove_file():
     #     if os.path.exists(file_path):
     #         os.remove(file_path)
-    
+
     return response
+
 
 @app.route('/delete/<string:file>')
 def delete(file):
