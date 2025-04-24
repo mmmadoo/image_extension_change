@@ -1,4 +1,4 @@
 Flask
 Pillow
-urllib
+urllib3
 Gunicorn
