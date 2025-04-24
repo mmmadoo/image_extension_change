@@ -2,9 +2,11 @@ from flask import Flask, render_template, request, redirect, url_for
 import os
 from PIL import Image
 from urllib.parse import quote
-
+from datetime import timedelta
 
 app = Flask(__name__)
+app.secret_key = 'your_secret_key'
+app.permanent_session_lifetime = timedelta(minutes=30)
 
 ext_dict = {'pdf': 'PDF', 'png': 'png', 'jpg': 'jpeg'}
 
