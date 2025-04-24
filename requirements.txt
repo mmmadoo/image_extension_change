@@ -1,0 +1,7 @@
+Flask
+render_template
+request
+redirect
+url_for
+os
+Image
