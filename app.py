@@ -10,32 +10,32 @@ app.permanent_session_lifetime = timedelta(minutes=30)
 
 ext_dict = {'pdf': 'PDF', 'png': 'png', 'jpg': 'jpeg'}
 
-# 操作画面
+# Operation screen
 @app.route('/')
 def index():
     files = [file for file in os.listdir('files')]
     files.pop(0)
     return render_template('index.html', csv_files=files)
 
-# ファイルのアップロードを行う
+# Upload a file
 @app.route('/upload', methods=["POST"])
 def upload():
-    # ファイルが無い場合
+    # If the file does not exist
     if 'file' not in request.files:
         return redirect(url_for('index'))
     
     file = request.files.get('file')
     if not file or not file.filename:
-        # ファイルが存在しない、またはファイル名が空の場合
+        # If the file does not exist or the file name is empty
         return redirect(url_for('index'))
     
     name = request.form.get('text')
     extension = request.form.get('ext')
     if not name or not extension or extension == 'None':
-        # 名前または拡張子が無効な場合
+        # If the name or extension is invalid
         return redirect(url_for('index'))
     
-    # file.filename が None の場合に備えてデフォルト値を設定
+    # Set default filename
     file_name = 'uploaded_' + (file.filename or 'default_name')
     before_file_path = os.path.join('files', file_name)
     after_file_path = os.path.join('files', name + '.' + extension)
@@ -48,7 +48,7 @@ def upload():
     
     return redirect(url_for('index'))
 
-# ファイルのダウンロードを行う
+# Dowload the file
 @app.route('/download/<string:file>')
 def download(file):
     file_path = os.path.join('files', file)
@@ -56,24 +56,24 @@ def download(file):
     if not os.path.exists(file_path):
         return redirect(url_for('index'))
     
-    # ファイルをストリームとして送信
+    # Sending a file as a stream
     def generate():
         with open(file_path, 'rb') as f:
             yield from f
     
-    # 日本語ファイル名をURLエンコード
+    # URL encode Japanese file names
     encoded_file_name = quote(file)
     
-    # レスポンスを作成
+    # Create a response
     response = app.response_class(
         generate(),
         mimetype='application/octet-stream',
         headers={
-            # UTF-8でエンコードされたファイル名を指定
+            # Specify a file name encoded in UTF-8.
             'Content-Disposition': f"attachment; filename*=UTF-8''{encoded_file_name}"
         }
     )
-    # ファイル送信後に削除
+    # Delete after sending file
     @response.call_on_close
     def remove_file():
         if os.path.exists(file_path):
@@ -81,8 +81,7 @@ def download(file):
     return response    
 
 
-
-
+# Delete the file
 @app.route('/delete/<string:file>')
 def delete(file):
     file_path = os.path.join('files', file)
