@@ -25,8 +25,11 @@ I don't test environments under Linux and Mac.
 #Author
 
 NAME: mmmadoo
-Email: 
+Email: madosan02220@gmail.com
 
 #Licence
 
 "image_extension_change" is under MIT licence.
+
+
+This is my first development, if you have any problems please contact me at my email.
