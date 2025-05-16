@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>ファイルの拡張子変換 共有ファイル</title>
+    </head>
+    <body>
+        <h2 style="text-align:center">変換したファイル一覧</h2>
+        <table style="margin: 0 auto; border-collapse: collapse; width: 30%; text-align: center;">
+            {% for file in files %}
+                
+                <tr>
+                    <td><p style="text-align:center">{{ file }}</td>
+                    <td><a href="/download/{{ file }}">保存</a></td>
+                    <td><a href="/delete/{{ file }}">削除</a></td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td><p style="text-align:center">データがありません</td>
+                </tr>
+            {% endfor %}
+        </table>
+        <p>
+            <p style="text-align:center"><a href="/">戻る</a>
+        </p>
+    </body>
+</html>
