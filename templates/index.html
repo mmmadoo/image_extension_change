@@ -8,10 +8,13 @@
     <body>
         <h2 style="text-align:center">画像ファイルの拡張子変換</h2>
         <p>
+            {% if message %}
+                <p style="text-align:center">未入力の要素があります</p>
+            {% endif %}
             <form method="POST" action="/upload" enctype="multipart/form-data">
                 <p style="text-align:center">
-                    <label for="file">変換したい画像ファイル：</label>
-                    <input type="file" name="file">
+                    <label for="file">変換したい画像ファイル(複数選択可)：</label>
+                    <input type="file" name="file" multiple="multiple">
                 </p>
                 <p style="text-align:center">
                     <label for = 'text'>変換後の画像ファイルの名前：</label>
@@ -22,27 +25,13 @@
                     <select name='ext'>
                         <option value='None'>--</option>
                         <option value='pdf'>pdf</option>
-                        <option value='png'>png</option>
-                        <option value='jpg'>jpg</option>
                     </select>
                 </p>
+                <p style="text-align:center"><input type="checkbox" name="is_shared" value="True">共有する
                 <p style="text-align:center"><button type="submit">変換</button>
             </form>
+            <p style="text-align:center"><a href="/share">共有したファイル</a>
+
         </p>
-        <h2 style="text-align:center">変換したファイル一覧</h2>
-        <table style="margin: 0 auto; border-collapse: collapse; width: 40%; text-align: center;">
-            {% for file in csv_files %}
-            
-                <tr>
-                    <td>{{ file }}</td>
-                    <td><a href="/download/{{ file }}">保存</a></td>
-                    <td><a href="/delete/{{ file }}">削除</a></td>
-                </tr>
-            {% else %}
-                <tr>
-                    <td>データがありません</td>
-                </tr>
-            {% endfor %}
-        </table>
-    </body>
+        </body>
 </html>
