@@ -25,6 +25,7 @@ def index(complete=True):
 @app.route('/share')
 def move_share():
     files = [file for file in os.listdir('files')]
+    files.pop(0)
     return render_template('share.html', files=files)
 
 
