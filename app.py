@@ -15,11 +15,8 @@ ext_dict = {'pdf': 'PDF'}
 
 # 入力画面
 @app.route('/')
-def index(complete=True):
-    if complete:
-        return render_template('index.html',messege=False)
-    else:
-        return render_template('index.html',message=True)
+def index():
+    return render_template('index.html')
     
 # 共有されたファイル一覧ページ
 @app.route('/share')
@@ -69,7 +66,7 @@ def upload():
 
 
 
-# ファイルのダウンロードを行う
+# 共有しないファイルのダウンロードを行う
 def download(file):
     file_path = os.path.join('files', file)
     
@@ -96,7 +93,7 @@ def download(file):
     
     return response
 
-
+# 共有されたファイルのダウンロードを行う
 @app.route('/download/<string:file>')
 def shared_download(file):
     file_path = os.path.join('files', file)
@@ -117,7 +114,7 @@ def shared_download(file):
         }
     )
     return response
-
+# 共有されたファイルを削除する
 @app.route('/delete/<string:file>')
 def delete(file):
     file_path = os.path.join('files', file)
@@ -125,4 +122,4 @@ def delete(file):
     return redirect(url_for('move_share'))
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
