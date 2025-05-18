@@ -1,6 +1,7 @@
 from PIL import Image
 import os
 
+# ファイルが複数選択された際に、それらを縦に連結する
 def image_combination(alist):
     img_width = alist[0].width
     img_height = 0
@@ -15,7 +16,7 @@ def image_combination(alist):
         update_height += alist[i].height
     
     return img
-
+# 変換前のファイルをフォルダから削除する
 def delete_before_file(name_alist):
     for name in name_alist:
         os.remove(name)
