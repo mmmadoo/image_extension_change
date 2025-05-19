@@ -1,12 +1,17 @@
 # image_extension_change
 
-This code was uploaded to Render to create a web application.
-"image_extension_change"　can change the file extension and name of the photo file.
+Render[https://render.com/]というサイトでウェブアプリケーションをデプロイするために公開しているコードです。
+アプリケーションはこちら[https://image-extension-change.onrender.com]
+このwebアプリケーションはGoogleChromeやMicrosoftEdgeで開いてください。ファイル名が漢字の際の文字化けを防ぐことが出来ます。
+
 
 #Features
 
-You can change the extension and name of the specified photo file. You can also download the changed file from there.
-A delete function has also been implemented in case you make a mistake when changing the extension or the name after changing it.
+このコードは写真ファイルをPDF化し、ファイル名の変更を一度に行えるものです。変換したファイルを、他のユーザーと写真を共有することもできます。
+私の友人のために制作したものなので、拡張子がPDFのみになっています。ext_dictの中に値を追加することで、他の拡張子への変換も行えます。
+「共有する」の欄にチェックを入れると、自動でダウンロードはされずに「共有したファイル」ページで、他のユーザーがダウンロードや削除を行えるようになります。
+変換するファイルを複数選択した際は、それらが縦に連結されたものがダウンロードできます。横幅は1番目のファイルのものを用いるため注意してください。
+
 
 #Requirement
 
@@ -15,21 +20,21 @@ Flask 3.1.0
 pillow 11.2.1
 urllib3 2.2.3
 
+
 #Note
 
-"Files" is a folder for storing files downloaded by render. The .gitkeep file inside is meaningless, so it is not uploaded as a file in app.py.
-Since "requirements.txt" is also required for installing packages with render, you do not need to create it for personal use.
-This is an application I implemented mainly for a friend of mine, so it is limited to only the necessary extensions.
-I don't test environments under Linux and Mac.
+"Files"は、共有したファイルを保持するためのフォルダです。".gitkeep"は、Github内に何も含んでいないフォルダの作成ができないため、入れているファイルです。コードでは、".gitkeep"を無視してファイルを扱っています。
+"requirements.txt"は、renderにてインストールが必要なパッケージをまとめているファイルです。
+".gitkeep"と"requirements.txt"は、個人での実装では必要ありません。
+LinuxとMacの環境ではテストしていないので、正常に動かない場合があります。
+
 
 #Author
 
 NAME: mmmadoo
 Email: madosan02220@gmail.com
 
+
 #Licence
 
-"image_extension_change" is under MIT licence.
-
-
-This is my first development, if you have any problems please contact me at my email.
+MIT licence
